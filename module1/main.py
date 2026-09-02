@@ -1,0 +1,1 @@
+print('hi this is all about first api in details ')
