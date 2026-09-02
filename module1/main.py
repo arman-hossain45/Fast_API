@@ -5,7 +5,12 @@ print('hi this is all about first api in details ')
 from fastapi import FastAPI
 app = FastAPI()
 
-@app.get("/")
+@app.get("/")# simple get request 
 
 def hello():
     return 'Hello world'
+
+@app.get("/about")# simple get request 
+
+def about():
+    return 'Hello world from about page'
