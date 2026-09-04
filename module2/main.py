@@ -1,25 +1,124 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path, HTTPException, Query, Body
 import json
+from fastapi.responses import JSONResponse
 
-app=FastAPI()
-# load data from json file when we need the student data read
+
+app = FastAPI()
+
+
 def load_data():
-    with open('students.json','r') as f:
+    with open("students.json", "r") as f:
         data = json.load(f)
 
     return data
 
+
+def save_data(data):
+    with open("students.json", "w") as f:
+        json.dump(data, f)
+
+
 @app.get("/")
 def hello():
-    return "Students management system API"
+    return "Student Management System API"
 
-@app.get('/about')
+
+@app.get("/about")
 def about():
-    return "A fully functional api to manage our students records"
+    return "A fully functional API to manage our student records"
 
-# we read the json file data http method using get method
-@app.get('/view')
+
+@app.get("/view")
 def view_students():
     data = load_data()
+
     return data
-    
+
+
+@app.get("/view/{student_id}")
+def view_student_by_id(
+    student_id: str = Path(
+        ...,
+        description="Student id of the student",
+        example="S001"
+    )
+):
+    data = load_data()
+
+    if student_id in data:
+        return data[student_id]
+
+    else:
+        raise HTTPException(
+            status_code=404,
+            detail="Student not found"
+        )
+
+
+@app.get("/sort")
+def view_sorted_students(
+    sorted_by: str = Query(
+        ...,
+        description="Sort on the basis of class, age, roll, marks"
+    ),
+    order: str = Query(
+        "asc",
+        description="choose order: asc or desc"
+    )
+):
+    valid_fields = [
+        "age",
+        "class",
+        "roll",
+        "Math marks",
+        "English marks",
+        "Science marks",
+    ]
+
+    if sorted_by not in valid_fields:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Invalid field, select from {valid_fields}"
+        )
+
+    if order not in ["asc", "desc"]:
+        raise HTTPException(
+            status_code=404,
+            detail="Choose between asc or desc"
+        )
+
+    data = load_data()
+
+    if order == "asc":
+        sorted_data = list(data.values())
+
+        sorted_data.sort(
+            key=lambda x: x[sorted_by]
+        )
+
+        return sorted_data
+
+    else:
+        sorted_data = list(data.values())
+
+        sorted_data.sort(
+            key=lambda x: x[sorted_by],
+            reverse=True
+        )
+
+        return sorted_data
+
+
+@app.post("/create")
+def create_student(student: dict = Body()):
+    data = load_data()
+
+    student_id = student["id"]
+
+    data[student_id] = student
+
+    del data[student_id]["id"]
+
+    save_data(data)
+
+    return "Successfully student created"
