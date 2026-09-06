@@ -2,7 +2,7 @@
   "s001": {
     "name": "Arman Hossain",
     "age": 16,
-    "class": 10,
+    "student_class": 10,
     "roll": 1,
     "math_marks": 85,
     "english_marks": 78,
@@ -12,7 +12,7 @@
   "s002": {
     "name": "Rahim Ahmed",
     "age": 15,
-    "class": 10,
+    "student_class": 10,
     "roll": 2,
     "math_marks": 72,
     "english_marks": 81,
@@ -22,7 +22,7 @@
   "s003": {
     "name": "Nusrat Jahan",
     "age": 16,
-    "class": 10,
+    "student_class": 10,
     "roll": 3,
     "math_marks": 91,
     "english_marks": 87,
@@ -32,7 +32,7 @@
   "s004": {
     "name": "Sakib Hasan",
     "age": 15,
-    "class": 10,
+    "student_class": 10,
     "roll": 4,
     "math_marks": 68,
     "english_marks": 74,
@@ -42,7 +42,7 @@
   "s005": {
     "name": "Mim Akter",
     "age": 16,
-    "class": 10,
+    "student_class": 10,
     "roll": 5,
     "math_marks": 88,
     "english_marks": 92,
@@ -52,7 +52,7 @@
   "s006": {
     "name": "Tanvir Islam",
     "age": 15,
-    "class": 10,
+    "student_class": 10,
     "roll": 6,
     "math_marks": 79,
     "english_marks": 69,
@@ -62,7 +62,7 @@
   "s007": {
     "name": "Jannatul Ferdous",
     "age": 16,
-    "class": 10,
+    "student_class": 10,
     "roll": 7,
     "math_marks": 95,
     "english_marks": 89,
@@ -72,7 +72,7 @@
   "s008": {
     "name": "Fahim Khan",
     "age": 15,
-    "class": 10,
+    "student_class": 10,
     "roll": 8,
     "math_marks": 76,
     "english_marks": 80,
@@ -82,7 +82,7 @@
   "s009": {
     "name": "Sumaiya Rahman",
     "age": 16,
-    "class": 10,
+    "student_class": 10,
     "roll": 9,
     "math_marks": 84,
     "english_marks": 86,
@@ -92,7 +92,7 @@
   "s010": {
     "name": "Mehedi Hasan",
     "age": 15,
-    "class": 10,
+    "student_class": 10,
     "roll": 10,
     "math_marks": 70,
     "english_marks": 73,

@@ -1,9 +1,23 @@
 from fastapi import FastAPI, Path, HTTPException, Query, Body
 import json
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel,Field
+from typing import Annotated
 
 
 app = FastAPI()
+
+# apply pydantic to data validation
+class student(BaseModel):
+    id:Annotated[str,Field(...,description="student id of the student",example='s001')]
+    name: str
+    age:Annotated[int,Field(...,gt=0,lt=100,description="student age",example='12')]
+    student_class:Annotated[int,Field(...,description="student id of the student",example='s001')]
+    roll: Annotated[int,Field(...,gt=0,lt=100)]
+    math_marks:Annotated[int,Field(...,gt=0,lt=101)]
+    english_marks:Annotated[int,Field(...,gt=0,lt=101)]
+    science_marks:Annotated[int,Field(...,gt=0,lt=100)]
+    phone_number: Annotated[str,Field(...,example='01724397441')]
 
 
 def load_data():
@@ -68,7 +82,7 @@ def view_sorted_students(
 ):
     valid_fields = [
         "age",
-        "class",
+        "student_class",
         "roll",
         "Math marks",
         "English marks",
@@ -108,17 +122,20 @@ def view_sorted_students(
 
         return sorted_data
 
+# create post method in database 
 
 @app.post("/create")
-def create_student(student: dict = Body()):
+def create_student(student: student):
     data = load_data()
 
-    student_id = student["id"]
+    student_id = student.id
 
-    data[student_id] = student
+    data[student_id] = student.model_dump(exclude=['id'])
 
     del data[student_id]["id"]
 
     save_data(data)
 
     return "Successfully student created"
+
+# use pydantic to data validation  in details to check all the validation
