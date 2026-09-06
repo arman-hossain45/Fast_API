@@ -132,8 +132,6 @@ def create_student(student: student):
 
     data[student_id] = student.model_dump(exclude=['id'])
 
-    del data[student_id]["id"]
-
     save_data(data)
 
     return "Successfully student created"
