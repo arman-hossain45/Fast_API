@@ -146,6 +146,4 @@ def create_student(student: student):
 
 # now update the data using put request
 
-@app.put("/edit/{student_id}")
-def create_student(student_idstudent:)
 
