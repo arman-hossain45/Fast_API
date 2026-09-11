@@ -130,10 +130,22 @@ def create_student(student: student):
 
     student_id = student.id
 
+    # same id jeno  handle kore input neoyar somoy
+
+    if student.id in data:
+        raise HTTPException(status_code=400,detail='student id already exits')
+
     data[student_id] = student.model_dump(exclude=['id'])
 
     save_data(data)
 
-    return "Successfully student created"
+
+    return  JSONResponse(status_code=201,content="Successfully student created")
 
 # use pydantic to data validation  in details to check all the validation
+
+# now update the data using put request
+
+@app.put("/edit/{student_id}")
+def create_student(student_idstudent:)
+
